@@ -1,11 +1,12 @@
 class PhoneListController {
   phones: any[];
   orderProp: string;
-  query: string;
 
   static $inject = ['Phone'];
-  constructor(Phone: any) {
-    this.phones = Phone.query();
+  constructor(Phone) {
+    Phone.query().subscribe(phones => {
+      this.phones = phones;
+    });
     this.orderProp = 'age';
   }
 

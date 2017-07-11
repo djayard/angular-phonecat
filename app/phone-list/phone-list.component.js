@@ -1,6 +1,9 @@
 var PhoneListController = (function () {
     function PhoneListController(Phone) {
-        this.phones = Phone.query();
+        var _this = this;
+        Phone.query().subscribe(function (phones) {
+            _this.phones = phones;
+        });
         this.orderProp = 'age';
     }
     PhoneListController.$inject = ['Phone'];
